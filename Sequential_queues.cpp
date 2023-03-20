@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "time.h"
+
 #define MAX_LENGTH 100
 typedef struct Sequential_queues
 {
@@ -45,8 +46,7 @@ void deleteData(sq *p, int *data)
 void printQueue(sq *p)
 {
     int i = p->leader;
-    while (i < p->tail)
-    {
+    while (i < p->tail) {
         printf("%d ", p->sq_data[i]);
         i++;
     }
@@ -61,20 +61,27 @@ int main()
     srand(time(0));
 
 
-    for (int i = 0; i <= 10; i++)
-    {
+    for (int i = 0; i <= 10; i++) {
         int value = 1 + rand() % 10;
-        enterData(&sq1,value);
-        printf("本次入队数据为%d\n",value);
+        enterData(&sq1, value);
+        printf("Enter data%d\n", value);
         printQueue(&sq1);
     }
 
-    for (int i = 0; i <= 5; i++)
-    {
+    for (int i = 0; i <= 5; i++) {
         int value;
-        deleteData(&sq1,&value);
-        printf("本次出队数据为%d\n",value);
+        deleteData(&sq1, &value);
+        printf("Delete data%d\n", value);
         printQueue(&sq1);
     }
+
+    int value;
+    do {
+        printf("ENTER A NUMBER (1-10)/ENTER 0 TO QUIT:");
+        scanf_s("%d", &value);
+        enterData(&sq1, value);
+        printf("Enter data%d\n", value);
+        printQueue(&sq1);
+    } while (value);
     //printQueue(&sq1);
 }
